@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pykmc-analysis"
+version = "0.1.0"
+description = "Post-processing, classification, and event-viewer toolkit for pyKMC simulations"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Stephen Kerr" }]
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy",
+  "matplotlib",
+  "plotly",
+  "dash>=2.16",
+  "ase",
+  "scikit-learn",
+  "ipywidgets>=8",
+  "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+notebooks = [
+  "jupyterlab",
+  "nbformat",
+  "nbconvert",
+]
+# Family-level labels in the event viewer come from pylatkmc's family registry.
+families = [
+  "pylatkmc @ git+https://github.com/Kerrator/pylatkmc.git",
+]
+dev = [
+  "pytest",
+  "nbformat",
+]
+
+[project.urls]
+Repository = "https://github.com/Kerrator/PyKMC_Analysis"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["Analysis*"]
+
+[tool.setuptools.package-data]
+"Analysis.event_viewer" = ["assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["Analysis/tests", "Analysis/kmos_export/tests"]

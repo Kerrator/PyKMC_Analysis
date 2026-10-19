@@ -1,0 +1,69 @@
+/* Design tokens — Event Viewer refresh (PR1).
+   All subsequent PR CSS should reference these variables. */
+
+:root {
+  /* Colors — primaries */
+  --q-blue:      #002452;
+  --q-blue-700:  #0d356e;
+  --q-blue-50:   #e8eef5;
+  --q-gold:      #fabd0f;
+  --q-red:       #b90e31;
+
+  /* Colors — neutrals */
+  --ls-dark:     #6a625c;
+  --ls:          #908982;
+  --ls-light:    #b4aea8;
+  --ink:         #212121;
+  --ink-2:       #58595b;
+  --ink-3:       #808285;
+  --g-100:       #f1f2f2;
+  --g-200:       #e6e7e8;
+  --g-300:       #d1d3d4;
+  --g-400:       #a7a9ac;
+  --paper:       #fbfaf7;
+  --card:        #ffffff;
+  --line:        #e6e4df;
+
+  /* Colors — semantic */
+  --ok:          #2e7d32;
+  --warn:        #b07600;
+  --bad:         var(--q-red);
+
+  /* Typography */
+  --font-sans:   "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Helvetica, Arial, sans-serif;
+  --font-serif:  "Volkhov", Georgia, "Times New Roman", serif;
+  --font-mono:   "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco,
+                 Consolas, monospace;
+
+  /* Spacing / radius */
+  --r-sm:        4px;
+  --r:           6px;
+  --r-lg:        8px;
+  --ctrl-h:      30px;
+  --ctrl-h-sm:   26px;
+  --ctrl-h-lg:   34px;
+
+  /* Density — cozy default; PR8 tweaks panel toggles data-density */
+  --pad:         12px;
+  --fs:          13px;
+}
+
+:root[data-density="compact"] { --pad: 8px;  --fs: 12px; }
+:root[data-density="roomy"]   { --pad: 16px; --fs: 14px; }
+
+/* Paper-tone overrides — wired by the settings dropdown tweaks in PR8. */
+:root[data-paper-tone="warm"]    { --paper: #fbfaf7; }
+:root[data-paper-tone="neutral"] { --paper: #f6f6f6; }
+:root[data-paper-tone="cool"]    { --paper: #f5f7fa; }
+
+/* Base typography — individual controls keep their own px sizes for now. */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs);
+  line-height: 1.45;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+build/
+dist/
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Stale / archive trees — not version-controlled
+_archive/
+Analysis/_archive/
+Analysis/lattice_event_classification/_archive/
+
+# Regen-able classification output (rebuilt by build_rate_table.py /
+# classify_lattice_events.ipynb). Everything under this directory is generated
+# data except the hand-written EVENT_CLASSIFICATION.md and the files un-ignored below.
+Analysis/lattice_event_classification/**/*.csv
+Analysis/lattice_event_classification/**/*.json
+Analysis/lattice_event_classification/**/*.jsonl
+Analysis/lattice_event_classification/**/*.png
+Analysis/lattice_event_classification/**/*.log
+Analysis/lattice_event_classification/**/*.out
+Analysis/lattice_event_classification/**/*.in
+Analysis/lattice_event_classification/**/*.ini
+Analysis/lattice_event_classification/**/*.xyz
+Analysis/lattice_event_classification/**/*.eam
+Analysis/lattice_event_classification/**/*.kmcrt
+Analysis/lattice_event_classification/**/*.bak
+
+Analysis/lattice_event_classification/**/*.md
+Analysis/lattice_event_classification/showreel/
+
+# Executed notebooks, renders and simulation data
+*_executed.ipynb
+*.blend
+*.blend1
+*.mp4
+*.npz
+*.pickle
+*.xyz
+*.eam
+.ruff_cache/
+.mypy_cache/
+.coverage
+.env
+!Analysis/lattice_event_classification/EVENT_CLASSIFICATION.md
+
+# Default output folders of the README quick-run commands
+/frames_*/
+/schematics/

@@ -1,0 +1,1294 @@
+/* KMC Event Viewer — control-bar styling.
+   Colors and typography come from tokens.css. */
+
+h2, .app-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--q-blue);
+  margin: 0;
+}
+
+/* ── Header (PR2) ────────────────────────────────────────────────── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  min-height: 56px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.app-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ls-dark);
+}
+
+h1.app-title {
+  font-size: 20px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--q-blue);
+  margin: 0;
+}
+
+.header-nav { display: flex; gap: 4px; margin-left: 24px; }
+
+.nav-btn {
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--ink-2);
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.nav-btn:hover { background: var(--g-100); }
+.nav-btn.active {
+  background: var(--q-blue-50);
+  color: var(--q-blue);
+  font-weight: 600;
+}
+
+.header-actions {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.search-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--g-100);
+  border: 1px solid var(--g-300);
+  border-radius: 5px;
+  min-width: 220px;
+  color: var(--ls-dark);
+}
+.search-icon { font-size: 12px; }
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.search-input::placeholder { color: var(--ls); }
+.search-kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--card);
+  border: 1px solid var(--g-300);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--ls-dark);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.icon-btn:hover,
+.icon-btn:focus {
+  background: var(--q-blue);
+  color: var(--card);
+  border-color: var(--q-blue);
+  text-decoration: none;
+}
+
+/* ── Breadcrumb (PR2) ────────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--q-blue);
+  color: #d7dfea;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+
+.crumb { display: inline-flex; gap: 6px; align-items: baseline; }
+
+.crumb-label {
+  color: #8da3c0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+}
+
+.crumb-value { color: var(--card); font-weight: 500; }
+.crumb-gold  { color: var(--q-gold); font-weight: 600; }
+.crumb-muted { color: #8da3c0; font-weight: 400; }
+.crumb-sep   { color: #8da3c0; }
+.crumb-count { margin-left: auto; }
+
+/* ── Settings dropdown panel (unchanged from pre-PR2) ─────────────── */
+.settings-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 220px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--g-300);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.settings-panel.open {
+  display: block;
+}
+
+.settings-shutdown {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--q-red);
+  background: var(--card);
+  color: var(--q-red);
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.settings-shutdown:hover,
+.settings-shutdown:focus {
+  background: var(--q-red);
+  color: var(--card);
+}
+
+.settings-status {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ink-2);
+  min-height: 16px;
+}
+
+/* The horizontal bar that holds Frame / Color / Render / Projection / Overlay / Slider. */
+.control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 16px 14px;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slider-group {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+}
+
+.control-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ls-dark);
+}
+
+/* Pill-style radio / checklist groups */
+.pill-radio {
+  display: inline-flex;
+  background: var(--g-100);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 0;
+}
+
+.pill-radio label {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ink-2);
+  transition: background 0.12s, color 0.12s;
+  user-select: none;
+  margin: 0 !important;   /* override Dash's inline marginRight */
+}
+
+/* Hide the actual radio circle / checkbox — the label IS the button. */
+.pill-radio input[type="radio"],
+.pill-radio input[type="checkbox"] {
+  display: none;
+}
+
+.pill-radio label:hover {
+  background: var(--g-300);
+  color: var(--ink);
+}
+
+/* Selected pill — Plotly's RadioItems / Checklist mark the parent label of the
+   checked input via the :has() selector. */
+.pill-radio label:has(input:checked) {
+  background: var(--q-blue);
+  color: var(--card);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 36, 82, 0.25);
+}
+
+/* Top dropdown row */
+label {
+  font-size: 13px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* Make the slider mark labels a bit more legible */
+.dash-slider-mark {
+  font-size: 11px !important;
+  color: var(--ls-dark) !important;
+}
+
+/* Audit-rule amber pill (retained for any residual .audit-rule usage). */
+.audit-rule {
+  padding: 6px 10px;
+  background: #fff3e0;
+  color: #bf360c;
+  border: 1px solid #ffcc80;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.audit-rule:hover { background: #ffe0b2; }
+
+/* ── Body split: sidebar + main (PR3) ─────────────────────────────── */
+.app-body {
+  display: flex;
+  min-height: 0;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Filter sidebar (PR3) ─────────────────────────────────────────── */
+.filter-sidebar {
+  flex: 0 0 280px;
+  width: 280px;
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  padding: 4px 16px 40px;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--card);
+  padding: 12px 0 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.sidebar-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.sidebar-clear {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: var(--q-red);
+  padding: 0;
+  cursor: pointer;
+}
+.sidebar-clear:hover { color: var(--q-blue-700); }
+
+.sidebar-count {
+  margin-top: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--ls-dark);
+}
+
+/* ── Collapsible filter groups (PR3) ──────────────────────────────── */
+.filter-group {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+
+.filter-group > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+  user-select: none;
+}
+.filter-group > summary::-webkit-details-marker { display: none; }
+
+.group-caret {
+  display: inline-block;
+  width: 8px;
+  text-align: center;
+  color: var(--ls);
+  transition: transform 0.15s;
+}
+.filter-group[open] > summary .group-caret {
+  transform: rotate(90deg);
+}
+
+.group-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.group-body .control-label {
+  margin-bottom: 2px;
+}
+
+/* ── Chip-pill multiselect (PR3) ──────────────────────────────────── */
+.chip-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0;
+}
+
+.chip-pills label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 10px;
+  border: 1px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink-2);
+  border-radius: 12px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+  margin: 0 !important;
+  line-height: 1;
+}
+
+.chip-pills input[type="checkbox"],
+.chip-pills input[type="radio"] {
+  display: none;
+}
+
+.chip-pills label:hover {
+  background: var(--q-blue-50);
+  border-color: var(--q-blue);
+  color: var(--q-blue);
+}
+
+.chip-pills label:has(input:checked) {
+  background: var(--q-blue-50);
+  color: var(--q-blue);
+  border-color: var(--q-blue);
+  font-weight: 600;
+}
+
+/* ── Option checklist (Merge up/down, Show only un-audited) ───────── */
+.option-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.option-checks label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-2);
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+/* ── Numeric range inputs (in Numeric filter group) ───────────────── */
+.num-range {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.num-input {
+  width: 72px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  border: 1px solid var(--g-300);
+  border-radius: 4px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.num-arrow {
+  color: var(--ls);
+  font-size: 11px;
+}
+
+/* ── Axis toolbar (PR3) ───────────────────────────────────────────── */
+.scatter-title {
+  margin: 12px 16px 4px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--q-blue);
+  font-size: 18px;
+}
+
+.axis-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  padding: 6px 16px 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  flex-wrap: wrap;
+}
+
+.axis-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  flex: 1;
+}
+
+/* ── Viewer toolbar (PR4) ─────────────────────────────────────────── */
+.viewer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  row-gap: 10px;
+  padding: 10px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view-settings-anchor {
+  position: relative;
+  margin-left: auto;
+}
+
+/* Lock view button — saves the current camera as default for this event */
+.lock-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink-2);
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.lock-view-btn:hover {
+  background: var(--q-blue-50);
+  color: var(--q-blue);
+  border-color: var(--q-blue);
+}
+.lock-view-btn:active {
+  background: var(--q-blue);
+  color: #fff;
+}
+.lock-view-btn--has-default {
+  border-color: var(--q-blue);
+  color: var(--q-blue);
+}
+.lock-view-icon { font-size: 14px; line-height: 1; }
+.lock-view-label { white-space: nowrap; }
+.lock-view-status {
+  margin-left: 8px;
+  align-self: flex-end;
+  font-size: 11.5px;
+  color: var(--q-blue);
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+}
+.lock-view-status:empty { display: none; }
+
+.view-settings-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink-2);
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.view-settings-btn:hover,
+.view-settings-btn.active {
+  background: var(--q-blue-50);
+  color: var(--q-blue);
+  border-color: var(--q-blue);
+}
+
+.view-settings-cog { font-size: 13px; }
+
+.view-settings-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: var(--q-gold);
+  color: var(--ink);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.view-settings-badge:not(:empty) { display: inline-flex; }
+
+.view-settings-caret {
+  font-size: 9px;
+  color: var(--ls);
+  transition: transform 0.15s;
+}
+.view-settings-caret.open { transform: rotate(180deg); }
+
+.view-settings-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 320px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(33, 33, 33, 0.15);
+  padding: 14px;
+  z-index: 10;
+}
+.view-settings-panel.open {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view-settings-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Stack label + pill-radio pairs inside the popover. */
+.view-settings-panel .control-label { display: block; }
+.view-settings-panel .pill-radio { align-self: flex-start; }
+.view-settings-panel .rc-slider,
+.view-settings-panel .dash-slider { width: 100%; }
+
+.view-settings-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--q-blue);
+}
+
+.view-settings-reset {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: var(--ls-dark);
+  padding: 0;
+  cursor: pointer;
+}
+.view-settings-reset:hover { color: var(--q-blue); }
+
+.view-settings-panel .control-label { margin-top: 10px; }
+.view-settings-panel .control-label:first-of-type { margin-top: 0; }
+
+/* ── Viewer row: 3D graph + event rail (PR5) ─────────────────────── */
+.viewer-row {
+  display: flex;
+  gap: 0;
+  padding: 0 16px;
+  align-items: stretch;
+  min-height: 520px;
+}
+
+.event-graph {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-rail {
+  flex: 0 0 240px;
+  border-left: 1px solid var(--line);
+  background: var(--card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rail-card {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+}
+
+.rail-card-empty {
+  font-size: 11.5px;
+  color: var(--ls);
+  font-style: italic;
+}
+
+.rail-card-idx {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.rail-card-move {
+  font-size: 11.5px;
+  color: var(--ls-dark);
+  margin-top: 3px;
+  font-family: var(--font-mono);
+}
+
+.rail-card-ea {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-top: 6px;
+}
+
+.rail-steps {
+  display: flex;
+  gap: 4px;
+}
+
+.rail-step-btn {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink-2);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+.rail-step-btn:hover {
+  background: var(--q-blue-50);
+  color: var(--q-blue);
+  border-color: var(--q-blue);
+}
+
+.rail-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: var(--g-100);
+  color: var(--ls-dark);
+  border-radius: 4px;
+  font-size: 12px;
+  width: fit-content;
+}
+.rail-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 7px;
+  background: var(--g-400);
+}
+.rail-status.audited {
+  background: #e8f5e9;
+  color: var(--ok);
+}
+.rail-status.audited .rail-status-dot { background: var(--ok); }
+
+.rail-audit-btn {
+  margin-top: auto;
+  padding: 10px 12px;
+  background: var(--q-blue);
+  color: var(--card);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.rail-audit-btn:hover { background: var(--q-blue-700); }
+
+.rail-hint {
+  font-size: 11px;
+  color: var(--ls);
+  line-height: 1.5;
+}
+
+/* ── Audit drawer (PR5 minimal shell; PR6 polishes internals) ────── */
+.audit-drawer-root {
+  pointer-events: none;
+}
+
+.audit-drawer-scrim {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+  transition: background 0.18s;
+  z-index: 20;
+}
+.audit-drawer-scrim.open {
+  background: rgba(33, 33, 33, 0.25);
+  pointer-events: auto;
+}
+
+.audit-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  max-width: 94vw;
+  background: var(--card);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 30px rgba(33, 33, 33, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.22s cubic-bezier(0.2, 0.6, 0.2, 1);
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+.audit-drawer.open { transform: translateX(0); }
+
+.audit-drawer-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audit-drawer-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--q-blue);
+}
+
+.audit-drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: var(--ls-dark);
+  padding: 0 4px;
+  line-height: 1;
+  cursor: pointer;
+}
+.audit-drawer-close:hover { color: var(--ink); }
+
+.audit-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Drawer header subtitle (PR6) ─────────────────────────────────── */
+.audit-drawer-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.audit-drawer-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ls-dark);
+}
+
+/* ── Current state card (PR6) ─────────────────────────────────────── */
+.state-card {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px;
+  background: var(--paper);
+}
+.state-card-empty {
+  font-size: 12px;
+  color: var(--ls);
+  font-style: italic;
+}
+.state-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.state-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 3px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.state-row:last-child { border-bottom: none; }
+.state-label {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ls-dark);
+  width: 70px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.state-value {
+  font-size: 12px;
+  word-break: break-all;
+}
+.state-value code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+.audit-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ls);
+}
+.audit-marker.audited { color: var(--ok); }
+.audit-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 7px;
+  background: var(--g-400);
+}
+.audit-marker.audited .audit-dot { background: var(--ok); }
+
+/* ── Section labels (PR6) ─────────────────────────────────────────── */
+.section-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ls-dark);
+  margin: 14px 0 6px;
+}
+
+/* ── Verdict buttons (PR6) ────────────────────────────────────────── */
+.verdict-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.verdict-btn {
+  text-align: left;
+  padding: 8px 10px;
+  border: 1.5px solid var(--g-300);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+.verdict-btn-label { font-size: 12.5px; font-weight: 600; }
+.verdict-btn-hint  { font-size: 10.5px; color: var(--ls); }
+
+.verdict-btn.active { color: var(--card); }
+.verdict-btn.active .verdict-btn-hint {
+  color: rgba(255, 255, 255, 0.85);
+}
+.verdict-btn-confirm.active    { background: var(--ok);     border-color: var(--ok); }
+.verdict-btn-reclassify.active { background: var(--q-blue); border-color: var(--q-blue); }
+.verdict-btn-flag.active       { background: var(--warn);   border-color: var(--warn); }
+.verdict-btn-ignore.active     { background: var(--q-red);  border-color: var(--q-red); }
+.verdict-btn-unset.active      { background: var(--ls);     border-color: var(--ls); }
+
+/* ── Conditional overrides (PR6) ─────────────────────────────────── */
+.audit-overrides {
+  max-height: 0;
+  overflow: hidden;
+  /* On close, wait for the height transition to finish before
+     clipping descendants — otherwise dropdown menus snap shut
+     before the wrapper visually shrinks. */
+  transition: max-height 0.25s ease,
+              margin-top 0.25s ease,
+              padding 0.25s ease,
+              overflow 0s 0.25s;
+  padding: 0 12px;
+  background: var(--q-blue-50);
+  border: 1px solid #d3dbe6;
+  border-radius: 6px;
+  margin-top: 0;
+}
+.audit-overrides.open {
+  max-height: 600px;
+  margin-top: 16px;
+  padding: 12px;
+  /* Open: drop overflow:hidden immediately so dcc.Dropdown popovers
+     for move_type / family_id / direction can extend past the
+     wrapper box and remain clickable. */
+  overflow: visible;
+  transition: max-height 0.25s ease,
+              margin-top 0.25s ease,
+              padding 0.25s ease,
+              overflow 0s 0s;
+}
+.overrides-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--q-blue);
+  margin-bottom: 8px;
+}
+.audit-overrides label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ls-dark);
+  margin-top: 8px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ── Notes textarea (PR6) ────────────────────────────────────────── */
+.audit-notes {
+  width: 100%;
+  min-height: 96px;
+  padding: 10px;
+  border: 1px solid var(--g-300);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  resize: vertical;
+  box-sizing: border-box;
+  margin-top: 6px;
+}
+
+/* "Flag for animation" checkbox — orthogonal to verdict; consumed by
+   blender_viewer.showreel.select_curated. */
+/* "Browse run" banner — top-of-page run picker (above event-dd). Three
+   cascading dropdowns (composition / nvac / temp) + a coloring label. */
+.run-picker-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--g-100);
+  border-bottom: 1px solid var(--line);
+}
+.run-picker-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.run-picker-dd {
+  min-width: 140px;
+}
+.run-picker-coloring {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-left: auto;
+}
+
+.audit-render-flag {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--g-300);
+  border-radius: 6px;
+  background: var(--g-100);
+  font-size: 12.5px;
+  font-family: var(--font-sans);
+}
+.audit-render-flag label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+.audit-render-flag input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ── Drawer footer (PR6) ─────────────────────────────────────────── */
+.audit-drawer-footer {
+  border-top: 1px solid var(--line);
+  padding: 12px 18px;
+  background: var(--g-100);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.audit-drawer-footer .audit-batch-info {
+  font-size: 11.5px;
+  color: var(--q-blue);
+  min-height: 0;
+}
+.audit-drawer-footer .audit-status {
+  font-size: 11px;
+  color: var(--ok);
+  min-height: 0;
+}
+.audit-drawer-actions {
+  display: flex;
+  gap: 8px;
+}
+.audit-drawer-actions .audit-save {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--q-blue);
+  color: var(--card);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.1s;
+  margin-top: 0;
+}
+.audit-drawer-actions .audit-save:hover { background: var(--q-blue-700); }
+
+.audit-drawer-actions .audit-save-batch {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--q-gold);
+  background: var(--q-gold);
+  color: var(--ink);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+.audit-drawer-actions .audit-save-batch:hover:not(:disabled) {
+  background: #e0a600;
+  border-color: #e0a600;
+}
+.audit-drawer-actions .audit-save-batch:disabled {
+  background: var(--card);
+  color: var(--g-400);
+  border-color: var(--g-300);
+  cursor: not-allowed;
+}
+
+/* ── Scatter heading (PR7) ────────────────────────────────────────── */
+.scatter-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px 6px;
+}
+.scatter-subtitle {
+  font-size: 11.5px;
+  color: var(--ls-dark);
+}
+
+/* Override PR3's scatter-title margin to sit inside the heading flex. */
+.scatter-heading h3.scatter-title { margin: 0; }
+
+/* ── Scatter graph wrap + badge overlay (PR7) ─────────────────────── */
+.scatter-graph-wrap {
+  position: relative;
+  padding: 0 16px 16px;
+}
+
+.scatter-badge {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 32px;
+  background: var(--q-blue);
+  color: var(--card);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 36, 82, 0.2);
+}
+.scatter-badge.visible { display: inline-block; }
+
+/* ── Save toast (PR8) ─────────────────────────────────────────────── */
+.save-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--q-blue);
+  color: var(--card);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 6px 22px rgba(0, 36, 82, 0.3);
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.save-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Settings dropdown tweaks (PR8) ───────────────────────────────── */
+.settings-panel .control-label {
+  margin-top: 10px;
+  margin-bottom: 4px;
+  display: block;
+}
+.settings-panel .pill-radio { width: 100%; }
+.settings-divider {
+  margin: 14px 0 10px;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+
+/* ── Batch-info tip (PR8 cleanup of inline Material-Indigo hexes) ── */
+.batch-info-tip {
+  font-size: 12px;
+  color: var(--q-blue);
+  background: var(--q-blue-50);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+/* ── Focus rings (PR8) ────────────────────────────────────────────── */
+/* Queen's Blue ring for any keyboard-focused interactive element.
+   :focus-visible keeps mouse clicks ring-free. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="radio"]:focus-visible,
+[role="option"]:focus-visible,
+.verdict-btn:focus-visible,
+.nav-btn:focus-visible,
+.icon-btn:focus-visible,
+.rail-step-btn:focus-visible,
+.rail-audit-btn:focus-visible,
+.audit-save:focus-visible,
+.audit-save-batch:focus-visible,
+.view-settings-btn:focus-visible,
+.sidebar-clear:focus-visible {
+  outline: 2px solid var(--q-blue);
+  outline-offset: 2px;
+  border-radius: 5px;
+}
+/* Show the ring on the visible label when a hidden radio/checkbox
+   inside it gets keyboard focus (chip-pills / pill-radio pattern). */
+.pill-radio label:focus-within,
+.chip-pills label:focus-within {
+  outline: 2px solid var(--q-blue);
+  outline-offset: 2px;
+}
