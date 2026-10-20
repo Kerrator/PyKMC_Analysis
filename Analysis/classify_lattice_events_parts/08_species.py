@@ -7,7 +7,7 @@
 # Check if species info is available
 has_types = False
 for idx, row in sub.head(5).iterrows():
-    if 'initial_types' in row.index and row['initial_types'] is not None:
+    if event_types(row) is not None:
         has_types = True
         break
 

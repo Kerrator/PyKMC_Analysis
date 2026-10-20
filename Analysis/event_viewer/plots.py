@@ -27,6 +27,7 @@ from Analysis.event_viewer.analysis import (
 from Analysis.event_viewer.scatter_palette import DIRECTION_COLORS
 from Analysis.event_viewer.spheres import make_spheres_trace
 from Analysis.lattice_3d import classify_direction_xyz
+from Analysis.reference_table import event_types
 
 # Element -> color.
 ELEMENT_COLORS = {
@@ -215,7 +216,7 @@ def make_event_figure(
     final = np.asarray(event_row["final_positions"], dtype=float)
     frames = {"initial": init, "saddle": sadd, "final": final}
 
-    types = [str(t) for t in event_row["initial_types"]]
+    types = [str(t) for t in event_types(event_row)]
     n_atoms = len(types)
     mover_idx = int(event_row["move_atom_idx"])
 

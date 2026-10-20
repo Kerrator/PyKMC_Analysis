@@ -36,6 +36,7 @@ def _palette(cmap_name, keys):
 from Analysis import _paths
 from Analysis._paths import BARRIER_CUTOFF, CLASSIFICATION_DIR
 from Analysis.sim_discovery import parse_run_path
+from Analysis.reference_table import event_types
 from Analysis.lattice_map_events import (
     # Classification
     classify_event_mechanism,

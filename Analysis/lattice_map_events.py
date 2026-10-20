@@ -109,6 +109,7 @@ from Analysis._paths import (  # noqa: E402
     REQUIRED_POTENTIAL,
 )
 from Analysis.sim_discovery import parse_run_path  # noqa: E402
+from Analysis.reference_table import event_types  # noqa: E402
 
 # Event type names (used consistently across lattice_map_events and notebooks)
 TYPE_1NN = "1NN_hop"
@@ -577,7 +578,7 @@ def classify_event_from_row(row, nn_dist=NN1_DIST, nn2_dist=NN2_DIST, tol=DIST_T
         result.update(sf)
 
     if include_species:
-        species = row.get('initial_types', None)
+        species = event_types(row)
         result.update(_extract_species_info(
             species, move_idx, result.get('moved_indices', np.array([])),
             initial_pos, nn_dist,
@@ -803,7 +804,7 @@ def compute_ml_descriptors(row, cell=None, ideal_sites=None, nn_adjacency=None):
         out['Ea_over_kT'] = np.nan
 
     # ── Tier 1: species histograms 1NN + 2NN (fixed schema) ────────────
-    types = row.get('initial_types')
+    types = event_types(row)
     h1, h2 = _species_histogram_shells(init, types, mi)
     for sp in ML_SPECIES_SCHEMA:
         out[f'nn1_count_{sp}'] = int(h1.get(sp, 0))
@@ -941,7 +942,7 @@ def compute_env_fingerprint(row, surface_or_bulk='auto'):
 
     init = np.asarray(row['initial_positions'])
     final = np.asarray(row['final_positions'])
-    types = row.get('initial_types')
+    types = event_types(row)
     mi = int(row['move_atom_idx'])
 
     if init is None or len(init) == 0 or mi < 0 or mi >= len(init):
